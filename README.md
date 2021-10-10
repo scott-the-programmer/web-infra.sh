@@ -26,8 +26,7 @@ You'll need to set the following env var variables to continue
 #### install dependencies
 
 ``` sh
-go mod tidy
-go get
+make
 ```
 
 #### create infra
