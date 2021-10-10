@@ -23,13 +23,13 @@ func TestARecords(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	source := outputs["aRecordSource"]
+	recordSource := outputs["aRecordSource"]
 
 	sources := []struct {
 		url string
 	}{
-		{fmt.Sprintf("%s.", source.Value)},
-		{fmt.Sprintf("%s.%s.", "www", source.Value)},
+		{fmt.Sprintf("%s.", recordSource.Value)},
+		{fmt.Sprintf("%s.%s.", "www", recordSource.Value)},
 	}
 
 	config, err := dns.ClientConfigFromFile("/etc/resolv.conf")
@@ -48,7 +48,7 @@ func TestARecords(t *testing.T) {
 		}
 
 		if len(result.Answer) == 0 {
-			assert.Fail(t, fmt.Sprintf("no record found for %s", source.Value))
+			assert.Fail(t, fmt.Sprintf("no record found for %s", s))
 		}
 
 		assert.NotNil(t, result.Answer[0].(*dns.A).A.String())
