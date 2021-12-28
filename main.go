@@ -34,17 +34,30 @@ func main() {
 			return err
 		}
 
+		_, err = linode.NewFirewall(ctx, instance)
+		if err != nil {
+			return err
+		}
+
 		_, err = cloudflare.NewARecord(ctx, cloudflare.ARecordArgs{
 			Source: dns,
 			Target: instance.IpAddress,
 			ZoneId: zoneId,
 		})
 
+		if err != nil {
+			return err
+		}
+
 		_, err = cloudflare.NewARecord(ctx, cloudflare.ARecordArgs{
 			Source: fmt.Sprintf("%s.%s", "www", dns),
 			Target: instance.IpAddress,
 			ZoneId: zoneId,
 		})
+
+		if err != nil {
+			return err
+		}
 
 		ctx.Export("aRecordSource", pulumi.String(dns))
 		ctx.Export("aRecordTarget", instance.IpAddress)
