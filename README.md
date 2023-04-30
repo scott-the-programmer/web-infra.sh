@@ -1,6 +1,6 @@
 # web-infra
 
-This repository defines the infrastructure used by my site, [web.sh](https://github.com/scott-the-programmer/web.sh)
+This repository defines the infrastructure used by my site, [term.nz](https://github.com/scott-the-programmer/term.nz)
 
 Running this project _will_ charge you money on your provided linode / cloudflare account
 
